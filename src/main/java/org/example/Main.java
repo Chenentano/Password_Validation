@@ -4,6 +4,7 @@ public class Main {
     public static void main(String[] args) {
 
         System.out.println(checkIfPasswordContainsDigits("tes2%t"));
+        System.out.println(passwordStrength("test123"));
 
     }
 
@@ -44,5 +45,23 @@ public class Main {
             }
 
     }
+
+    public static String checkIfPasswordIsWeak(String password){
+        return "yoyo";
+    }
+    public static String passwordStrength(String password) {
+        if (password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*])(?=.{8,})")) {
+            return "Strong";
+        } else if (password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})")) {
+            return "Medium";
+        } else if (password.matches("^(?=.*[a-z])(?=.*[0-9])(?=.{8,})")) {
+            return "Meh";
+        } else if (password.matches("^(?=.*[A-Z])(?=.*[0-9])(?=.{8,})")) {
+            return "Weak";
+        } else {
+            return "WTF?";
+        }
+    }
+
 
 }
