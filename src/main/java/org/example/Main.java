@@ -4,7 +4,7 @@ public class Main {
     public static void main(String[] args) {
 
 
-        System.out.println(checkIfPasswordIsWeak("qwertz2"));
+        System.out.println(checkIfPasswordIsWeak("quynhabc"));
 
     }
 
@@ -48,7 +48,7 @@ public class Main {
 
     public static String checkIfPasswordIsWeak(String password){
 
-        String [] badWords = {"test","123","qwertz","12345","hallo"};
+        String [] badWords = {"test","123","qwertz","12345","hallo","abc"};
         //String lowerCasePassword = password.toLowerCase();
 
         for(String badWord : badWords){
