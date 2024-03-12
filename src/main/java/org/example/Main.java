@@ -3,8 +3,8 @@ package org.example;
 public class Main {
     public static void main(String[] args) {
 
-        System.out.println(checkIfPasswordContainsDigits("tes2%t"));
-        System.out.println(passwordStrength("test123"));
+
+        System.out.println(checkIfPasswordIsWeak("qwertz2"));
 
     }
 
@@ -47,19 +47,29 @@ public class Main {
     }
 
     public static String checkIfPasswordIsWeak(String password){
-        return "yoyo";
+
+        String [] badWords = {"test","123","qwertz","12345","hallo"};
+        //String lowerCasePassword = password.toLowerCase();
+
+        for(String badWord : badWords){
+           // String lowerCaseBadWord = badWord.toLowerCase();
+            if(password.contains(badWord)){
+                return "Das Passwort ist zu schwach!";
+            }
+        }
+        return "Gutes Passwort!";
     }
     public static String passwordStrength(String password) {
         if (password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*])(?=.{8,})")) {
-            return "Strong";
+            return "Sehr gut!";
         } else if (password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})")) {
-            return "Medium";
+            return "Gut!";
         } else if (password.matches("^(?=.*[a-z])(?=.*[0-9])(?=.{8,})")) {
-            return "Meh";
+            return "Schlecht!";
         } else if (password.matches("^(?=.*[A-Z])(?=.*[0-9])(?=.{8,})")) {
-            return "Weak";
+            return "Schlecht!";
         } else {
-            return "WTF?";
+            return "Hast du überhaupt eine Tastatur?s";
         }
     }
 
