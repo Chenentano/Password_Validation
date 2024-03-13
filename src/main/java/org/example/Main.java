@@ -1,11 +1,34 @@
 package org.example;
 
+import java.util.Random;
+
 public class Main {
     public static void main(String[] args) {
 
         String password = "fasfaSsd$2";
         System.out.println(checkPassword(password));
 
+        System.out.println(generateSafePassword(20));
+
+    }
+
+    public static String generateSafePassword(int length){
+
+        String symbol = "-/.^&*_!@%=+>)";
+        String upperLetter = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String lowerLetter = "abcdefghijklmnopqrstuvwxyz";
+        String numbers = "0123456789";
+
+        String finalString = upperLetter + lowerLetter + numbers + symbol;
+
+        Random random = new Random();
+
+        char [] Password = new char[length];
+        StringBuilder password = new StringBuilder(length);
+        for(int i = 0 ; i < length ; i++){
+            password.append(finalString.charAt(random.nextInt(finalString.length())));
+        }
+        return password.toString();
     }
 
 
@@ -85,7 +108,7 @@ public class Main {
         } else if (password.matches("^(?=.*[A-Z])(?=.*[0-9])(?=.{8,})")) {
             return "Schlecht!";
         } else {
-            return "Hast du überhaupt eine Tastatur?s";
+            return "Hast du überhaupt eine Tastatur?";
         }
     }
 
