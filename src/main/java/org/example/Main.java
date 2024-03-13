@@ -3,62 +3,78 @@ package org.example;
 public class Main {
     public static void main(String[] args) {
 
-
-        System.out.println(checkIfPasswordIsWeak("quynhabc"));
+        String password = "fasfaSsd$2";
+        System.out.println(checkPassword(password));
 
     }
 
 
-    public static String checkPasswordLength(String password) {
-        if(password.length()< 8){
+    public static String checkPassword(String password) {
+        if (!checkPasswordLength(password)) {
             return "Password muss min. 8 Zeichen enthalten!";
-        }
+        } else if (!checkIfPasswordContainsDigits(password)) {
+            return "Passwort muss mindestens eine Zahl enthalten!";
+        } else if (!checkIfPasswordContainsUpperAndLowerCase(password)) {
+            return "Passwort muss sowohl Groß- als auch Kleinbuchstaben enthalten!";
+        } else if (!checkIfPasswordIsStrong(password)) {
+            return "Das Passwort ist zu schwach!";
+        } else if (!checkIfPasswordContainsSpecialChars(password)) {
+            return "Passwort muss mindestens ein Sonderzeichen enthalten!";
+        } else {
             return "Tolles Passwort!";
+        }
     }
 
-    public static String checkIfPasswordContainsDigits(String password) {
+    private static boolean checkPasswordLength(String password) {
+        return password.length() >= 8;
+    }
 
-        for(char c : password.toCharArray()){
-            if(Character.isDigit(c)){
-                return "Tolles Passwort!";
+    private static boolean checkIfPasswordContainsDigits(String password) {
+        for (char c : password.toCharArray()) {
+            if (Character.isDigit(c)) {
+                return true;
             }
         }
-                return "Keine Sonderzeichen gefunden";
+        return false;
     }
 
-    public static String checkIfPasswordContainsUpperAndLowerCase(String password){
+    private static boolean checkIfPasswordContainsUpperAndLowerCase(String password) {
         boolean containsUpperCase = false;
         boolean containsLowerCase = false;
 
-        for (char c : password.toCharArray()){
-            if(Character.isLowerCase(c)){
+        for (char c : password.toCharArray()) {
+            if (Character.isLowerCase(c)) {
                 containsLowerCase = true;
             }
-            if(Character.isUpperCase(c)){
+            if (Character.isUpperCase(c)) {
                 containsUpperCase = true;
             }
         }
-            if(containsLowerCase && containsUpperCase){
-                return "Tolles Passwort!";
-            }else{
-                return "Das Passwort beinhaltet nur upper oder lowercase";
-            }
-
+        return containsLowerCase && containsUpperCase;
     }
 
-    public static String checkIfPasswordIsWeak(String password){
+    private static boolean checkIfPasswordIsStrong(String password) {
+        String[] badWords = {"test", "123", "qwertz", "12345", "hallo", "abc"};
 
-        String [] badWords = {"test","123","qwertz","12345","hallo","abc"};
-        //String lowerCasePassword = password.toLowerCase();
-
-        for(String badWord : badWords){
-           // String lowerCaseBadWord = badWord.toLowerCase();
-            if(password.contains(badWord)){
-                return "Das Passwort ist zu schwach!";
+        for (String badWord : badWords) {
+            if (password.contains(badWord)) {
+                return false;
             }
         }
-        return "Gutes Passwort!";
+        return true;
     }
+
+    private static boolean checkIfPasswordContainsSpecialChars(String password) {
+        String[] specialChars = {"!", "§", "$", "%", "&", "/", "(", ")", "=", "@", "?", "-", ".", "+", "#", "*"};
+
+        for (String specialChar : specialChars) {
+            if (password.contains(specialChar)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static String passwordStrength(String password) {
         if (password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*])(?=.{8,})")) {
             return "Sehr gut!";
