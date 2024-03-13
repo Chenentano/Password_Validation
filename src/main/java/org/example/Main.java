@@ -8,7 +8,7 @@ public class Main {
         String password = "fasfaSsd$2";
         System.out.println(checkPassword(password));
 
-        System.out.println(generateSafePassword(20));
+        System.out.println(generateSafePassword(7));
 
     }
 
@@ -26,7 +26,11 @@ public class Main {
         char [] Password = new char[length];
         StringBuilder password = new StringBuilder(length);
         for(int i = 0 ; i < length ; i++){
-            password.append(finalString.charAt(random.nextInt(finalString.length())));
+            if(length < 8){
+                return "Das Passwort muss mindesten 8 Zeichen enthalten";
+            }else{
+                password.append(finalString.charAt(random.nextInt(finalString.length())));
+            }
         }
         return password.toString();
     }
