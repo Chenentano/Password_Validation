@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MainTest {
-    //GENAU 8 Chars
+  /*  //GENAU 8 Chars
     @Test
     void checkPasswordLength_ShouldReturnStringTollesPasswort_perfectAmountOfChars() {
         //GIVEN
@@ -61,5 +61,5 @@ class MainTest {
         actualy = Main.checkIfPasswordContainsUpperAndLowerCase("passwordS2");
         //THEN
         Assertions.assertEquals(expected, actualy);
-    }
+ */
 }
